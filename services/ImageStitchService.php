@@ -27,7 +27,7 @@ class ImageStitchService extends BaseApplicationComponent
       }
 
       // Loop through original image URLs, create images from them, and add them to an $images array (why? idk)
-      foreach($imageArray as $keyfoo => $originalImage)
+      foreach($imageArray as $key => $originalImage)
       {
         $pieces = explode('.', $originalImage);
 
@@ -55,7 +55,7 @@ class ImageStitchService extends BaseApplicationComponent
           /*
           // Debugging: Output each image by itself
           $path = craft()->path->getTempPath();
-          $destination = $path.$keyfoo.'.png';
+          $destination = $path.$key.'.png';
           imagepng($newImg, $destination);
           */
 
