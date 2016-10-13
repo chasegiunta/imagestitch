@@ -1,0 +1,26 @@
+{#
+/**
+ * ImageStitch plugin for Craft CMS
+ *
+ * ImageStitch Settings.twig
+ *
+ * @author    ChaseGiunta
+ * @copyright Copyright (c) 2016 ChaseGiunta
+ * @link      twitter.com/chasegiunta
+ * @package   ImageStitch
+ * @since     1.0.0
+ */
+#}
+
+{% import "_includes/forms" as forms %}
+
+{% includeCssResource "imagestitch/css/ImageStitch_Style.css" %}
+{% includeJsResource "imagestitch/js/ImageStitch_Script.js" %}
+
+{{ forms.textField({
+    label: 'Result Image Path',
+    instructions: 'Location to save result image',
+    id: 'stitchResultPath',
+    name: 'stitchResultPath',
+    value: settings['stitchResultPath']})
+}}

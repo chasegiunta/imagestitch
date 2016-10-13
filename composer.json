@@ -1,0 +1,14 @@
+{
+	"name": "chasegiunta/imagestitch",
+	"description": "Render multiple images side-by-side as one.",
+	"type": "craft-plugin",
+	"authors": [
+		{
+			"name": "ChaseGiunta",
+			"homepage": "twitter.com/chasegiunta"
+		}
+	],
+	"require": {
+		"composer/installers": "~1.0"
+	}
+}
