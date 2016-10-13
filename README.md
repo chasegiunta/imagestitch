@@ -2,7 +2,8 @@
 
 Take an array of images, stitch them together side-by-side, and output as one image in templates.
 
-Example: I needed to randomly output multiple ~30 college logos from separate entries side-by-side but didn't want 30 http requests.
+Real world (edge) case: 
+I needed to randomly output ~30 college logos from separate entries, side-by-side, but didn't want 30 http requests.
 
 ## Installation
 
