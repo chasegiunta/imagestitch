@@ -6,5 +6,15 @@
         "notes": [
             "[Added] Initial release"
         ]
+    },
+      {
+        "version": "1.1.0",
+        "downloadUrl": "https://github.com/chasegiunta/imagestitch/archive/master.zip",
+        "date": "2016-10-12T03:09:04.531Z",
+        "notes": [
+            "[Added] Support for accepting JPEG, JPG, GIF extensions",
+            "[Added] Support for outputting to JPEG or JPG",
+            "[Added] Quality parameter for JPG output"
+        ]
     }
 ]

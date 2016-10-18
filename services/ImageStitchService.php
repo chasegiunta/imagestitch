@@ -16,7 +16,7 @@ namespace Craft;
 class ImageStitchService extends BaseApplicationComponent
 {
 
-    public function stitch($filename, $imageArray, $height = 50, $spacing = 0, $random = false)
+    public function stitch($filename, $imageArray, $height = 50, $spacing = 0, $random = false, $quality = 100)
     {
       $canvasWidth = 0;
       $images_widths = array();
@@ -30,17 +30,24 @@ class ImageStitchService extends BaseApplicationComponent
       foreach($imageArray as $key => $originalImage)
       {
         $pieces = explode('.', $originalImage);
+        $ext = $pieces[count($pieces)-1];
 
-        if ($pieces[count($pieces)-1] == 'png')
+        if ($ext == ('png' || 'gif' || 'jpg' || 'jpeg'))
         {
-          // Convert logo URL to image resource (with transparency)
-          $imageResource = imagecreatefrompng($originalImage);
+          if ($ext == 'png') {
+            // Convert logo URL to image resource (with transparency)
+            $imageResource = imagecreatefrompng($originalImage);
+          } elseif ($ext == 'gif') {
+            $imageResource = imagecreatefromgif($originalImage);
+          } elseif ($ext == 'jpg' || 'jpeg') {
+            $imageResource = imagecreatefromjpeg($originalImage);
+          }
 
           // Get proportional resize dimensions
           list($resizedWidth, $resizedHeight, $originalImage_width, $originalImage_height) = $this->getResizeDimensions($originalImage, $height);
 
-          // Scale PNG and retain Transparency:
-          // Source: http://stackoverflow.com/a/279310/4565664
+          // Scale PNG/GIF and retain Transparency:
+          // Reference: http://stackoverflow.com/a/279310/4565664
           $newImg = imagecreatetruecolor($resizedWidth + $spacing, $resizedHeight);
           imageAlphaBlending($newImg, false);
           imageSaveAlpha($newImg, true);
@@ -63,6 +70,7 @@ class ImageStitchService extends BaseApplicationComponent
           $canvasWidth = $canvasWidth + floor($resizedWidth) + $spacing;
           $images_widths[] = floor($resizedWidth) + $spacing;
         }
+
       }
 
       // Create new canvas with desired dimensions
@@ -81,7 +89,15 @@ class ImageStitchService extends BaseApplicationComponent
       $path = $pluginSettings->stitchResultPath;
 
       $destination_image = $path.$filename;
-      imagepng($canvas, $destination_image);
+
+      $filename = explode('.', $filename);
+      // $filenameext = $pieces[count($pieces)-1];
+
+      if ($filename[count($filename)-1] == 'png') {
+        imagepng($canvas, $destination_image);
+      } elseif ($filename[count($filename)-1] == 'jpg' || 'jpeg') {
+        imagejpeg($canvas, $destination_image, $quality);
+      }
 
       return $destination_image;
     }
@@ -89,7 +105,7 @@ class ImageStitchService extends BaseApplicationComponent
 
     public function getResizeDimensions($image, $height)
     {
-      // Source: http://stackoverflow.com/a/16627759/4565664
+      // Reference: http://stackoverflow.com/a/16627759/4565664
       list($image_width, $image_height) = getimagesize($image);
       $ar = $image_width / $image_height;
 
