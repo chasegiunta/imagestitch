@@ -2,6 +2,8 @@
 
 Take an array of images, stitch them together side-by-side, and output as one image in templates, saving the client multiple HTTP requests.
 
+![Screenshot of ImageStitch Result](https://raw.githubusercontent.com/ChaseGiunta/imagestitch/master/logosStitched.png)
+
 ## Installation
 
 To install ImageStitch, follow these steps:
