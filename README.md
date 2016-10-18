@@ -17,7 +17,7 @@ Before using ImageStitch, navigate to the plugin's settings and define the local
 
 ## Using ImageStitch
 
-ImageStich requires an array (`IMAGES` in the example below) of image URLs. It accepts `.png`, `.jpg`, and `.gif` image formats. ImageStitch can output `png` or `jpg` images. Be sure that your `FILENAME` parameter has the desired extension appended to the end. Images in other formats will be ignored. `OUTPUT HEIGHT`, `SPACING`, `RANDOM`, and `QUALITY` parameters are optional. `QUALITY` is only used on `png` output.
+ImageStich requires an array (`IMAGES` in the example below) of image URLs. It accepts `.png`, `.jpg`, and `.gif` image formats. ImageStitch can output `png` or `jpg` images. Be sure that your `FILENAME` parameter has the desired extension appended to the end. Images in other formats will be ignored. `OUTPUT HEIGHT`, `SPACING`, `RANDOM`, and `QUALITY` parameters are optional. `QUALITY` is only used on `jpg` output.
 
 ```
 {{ imageStitch(FILENAME, IMAGES, HEIGHT, SPACING, RANDOM, QUALITY) }}
